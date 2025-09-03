@@ -33,7 +33,7 @@ Verify configuration:
  cd awsS3staticwebsite
 ```
 ```
- git clone 
+ git clone git@github.com:techgeek68/cafe-website-on-aws-s3.git
 ```
 ---
 
@@ -95,10 +95,10 @@ aws s3 cp ./<dir_name> s3://<your-bucket-name>/ --recursive
 ```
 Example:
 ```
- cd awsS3staticwebsite
+ cd awsS3staticwebsite/cafe-website-on-aws-s3
 ```
 ```
-aws s3 cp ~/awsS3staticwebsite s3://labbucket-666/ --recursive
+aws s3 cp ~/awsS3staticwebsite/cafe-website-on-aws-s3 s3://labbucket-666/ --recursive
 ```
 
 ---
@@ -113,11 +113,21 @@ aws s3 website s3://<your-bucket-name>/ --index-document index.html --error-docu
 ```
 > If you don’t have `error.html`, omit `--error-document error.html`.
 
+Example:
+```
+aws s3 website s3://labbucket-666 --index-document index.html --error-document error.html
+```
 ---
 
 ## Step 5: Set Bucket Policy for Public Read Access
 
 *Allow everyone to read files in your bucket, so your website is publicly accessible. This step applies a policy that grants public read permissions to all objects.*
+
+Create a file
+```
+ vim bucket-policy.json
+```
+
 Syntax:
 ```json
 {
@@ -133,7 +143,8 @@ Syntax:
   ]
 }
 ```
-Example: Create a file `vim bucket-policy.json`:
+
+Example:
 ```
 {
   "Version": "2012-10-17",
@@ -171,22 +182,35 @@ aws s3api get-bucket-website --bucket <your-bucket-name>
 ``` 
 Example output: 
 ```
-http://<your-bucket-name>.s3-website-<region>.amazonaws.com
+{
+    "IndexDocument": {
+        "Suffix": "index.html"
+    },
+    "ErrorDocument": {
+        "Key": "error.html"
+    }
+}
+
 ```
-- Open it in a browser to view your site.
+- Open in a browser to view your site as below instruction example:
+```
+  http://<your-bucket-name>.s3-website-<region>.amazonaws.com
+```
 
 ---
 
 ## Step 7: Enable Versioning (Data Protection)
 
 *Turn on versioning to protect against accidental overwrites and deletions. S3 will keep all versions of your files, improving data safety and recovery.*
+
 Syntax:
 ```bash
-aws s3api put-bucket-versioning --bucket <your-bucket-name> --versioning-configuration Status=Enabled
+ aws s3api put-bucket-versioning --bucket <your-bucket-name> --versioning-configuration Status=Enabled
 ```
 Example:
-aws s3api put-bucket-versioning --bucket labbucket-666 --versioning-configuration Status=Enabled
-
+```
+ aws s3api put-bucket-versioning --bucket labbucket-666 --versioning-configuration Status=Enabled
+```
 ---
 
 ## Step 8: Upload New Version of a File
@@ -203,9 +227,9 @@ Example:
 ```
 vi index.html
 ```
-```
- Change or update something !!
-```
+
+         Change or update something in `index.html` page !!
+
 ```
  aws s3 cp ~/awsS3staticwebsite/index.html s3://labbucket-666/index.html
 ```
@@ -231,7 +255,10 @@ aws s3api list-object-versions --bucket labbucket-666 --prefix index.html
 
 *Manage storage costs by setting rules to move older file versions to cheaper storage or delete them automatically. This helps optimize costs over time.*
 
-Create `vim lifecycle.json`:
+Create:
+```
+ vim lifecycle.json
+```
 
 ```json
 {
@@ -273,6 +300,10 @@ Example:
 ```
 aws s3api put-bucket-lifecycle-configuration --bucket labbucket-666 --lifecycle-configuration file://lifecycle.json
 ```
+Verify:
+```
+aws s3api get-bucket-lifecycle-configuration --bucket labbucket-666
+```
 
 ---
 
@@ -284,16 +315,23 @@ aws s3api put-bucket-lifecycle-configuration --bucket labbucket-666 --lifecycle-
 
 *Create a second bucket in a different region and enable versioning on it. This is where your backup copies will be stored.*
 
+Syntax
+
+Create:
 ```bash
-aws s3api create-bucket --bucket <your-backup-bucket-name> --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
+aws s3api create-bucket --bucket <your-backup-bucket-name> --region <region_name> --create-bucket-configuration LocationConstraint=us-west-2
 ```
+Enable Versioning:
 ```
 aws s3api put-bucket-versioning --bucket <your-backup-bucket-name> --versioning-configuration Status=Enabled
 ```
-Example:
+Example
+
+Create:
 ```
 aws s3api create-bucket --bucket labbucket-backup-666 --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
 ```
+Enable versioning:
 ```
 aws s3api put-bucket-versioning --bucket labbucket-backup-666 --versioning-configuration Status=Enabled
 ```
@@ -306,8 +344,11 @@ aws s3api put-bucket-versioning --bucket labbucket-backup-666 --versioning-confi
 
 *Configure your source bucket to replicate all objects to the destination bucket using the IAM role. This sets the rules for cross-region backup.*
 
-Create `replication.json` (replace with your Account ID and ARNs):
-
+Create
+```
+ vi replication.json         #replace with your Account ID and ARNs
+```
+Syntax:
 ```json
 {
   "Role": "arn:aws:iam::<account-id>:role/CafeRole",
@@ -327,11 +368,40 @@ Create `replication.json` (replace with your Account ID and ARNs):
   ]
 }
 ```
-Apply:
 
-```bash
-aws s3api put-bucket-replication --bucket <your-bucket-name> --replication-configuration file://replication.json
+Example:
 ```
+{
+  "Role": "arn:aws:iam::341963613150:role/CafeRole",
+  "Rules": [
+    {
+      "ID": "ReplicateAll",
+      "Priority": 1,
+      "Status": "Enabled",
+      "Filter": {},
+      "Destination": {
+        "Bucket": "arn:aws:s3:::labbucket-backup-666",
+        "StorageClass": "STANDARD"
+      },
+      "DeleteMarkerReplication": {
+        "Status": "Enabled"
+      }
+    }
+  ]
+}
+```
+
+Apply
+
+Syntax:
+```bash
+ aws s3api put-bucket-replication --bucket <your-bucket-name> --replication-configuration file://replication.json
+```
+Example:
+```
+ aws s3api put-bucket-replication --bucket labbucket-666 --replication-configuration file://replication.json
+```
+
 
 ---
 
@@ -343,7 +413,7 @@ aws s3api put-bucket-replication --bucket <your-bucket-name> --replication-confi
 - After a few minutes, check the backup bucket:
 
 ```bash
-aws s3 ls s3://<your-backup-bucket-name>/
+ aws s3 ls s3://<your-backup-bucket-name>/
 ```
 
 ---
@@ -355,7 +425,11 @@ aws s3 ls s3://<your-backup-bucket-name>/
 *Delete all files from your bucket to avoid extra charges or prepare for removing the bucket. This erases all objects in your bucket.*
 
 ```bash
-aws s3 rm s3://<your-bucket-name> --recursive
+  aws s3 rm s3://<your-bucket-name> --recursive
+```
+Example:
+```
+ aws s3 rm s3://labbucket-666 --recursive
 ```
 
 ## Delete Bucket
@@ -363,8 +437,12 @@ aws s3 rm s3://<your-bucket-name> --recursive
 *Remove the empty bucket from your AWS account to fully clean up your resources. Make sure the bucket is empty before deletion.*
 
 ```bash
-aws s3api delete-bucket --bucket <your-bucket-name> --region us-east-1
+ aws s3api delete-bucket --bucket <your-bucket-name> --region us-east-1
 ```
 - Change region for backup bucket as needed.
-
+  
+Example:
+```
+ aws s3api delete-bucket --bucket labbucket-666 --region us-east-1
+```
 ---
