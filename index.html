@@ -1,98 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-	<meta charset="ISO-8859-1">
-	<title>Welcome to the Caf&eacute;!</title>
-	<link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>Bake&Brew | Artisanal Pastries & Specialty Coffee</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Pacifico&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
+<body>
+    <header class="main-header fade-in">
+        <div class="banner-img-container zoomable" data-img="images/bake-and-brew-cafe-storefront-bishalnagar-chandol-kathmandu.jpg">
+            <img src="images/bake-and-brew-cafe-storefront-bishalnagar-chandol-kathmandu.jpg" alt="Bake & Brew Cafe Storefront Banner" class="banner-img">
+            <div class="banner-overlay">
+                <h1 class="brand-title">Bake&Brew</h1>
+                <p class="brand-tagline">Artisanal Pastries & Himalayan Specialty Coffee in Kathmandu</p>
+            </div>
+        </div>
+        <nav>
+            <a href="#menu" class="nav-link nav-underline">Menu</a>
+            <a href="#about" class="nav-link nav-underline">About Us</a>
+            <a href="#contact" class="nav-link nav-underline">Contact</a>
+        </nav>
+    </header>
 
-<body class="bodyStyle">
+    <main>
+        <section class="hero-section fade-in">
+            <div class="hero-img-container zoomable" data-img="images/bake-and-brew-cafe-cozy-interior-kathmandu.jpg">
+                <img src="images/bake-and-brew-cafe-cozy-interior-kathmandu.jpg" alt="Cafe Interior" class="hero-img">
+            </div>
+            <div class="hero-text">
+                <h2>Welcome to Bake&Brew!</h2>
+                <p>
+                    Experience a curated selection of delectable pastries, fresh breads, and specialty coffee in a cozy atmosphere. Every bake is crafted with love; every cup brewed with care.
+                </p>
+            </div>
+        </section>
 
-	<div id="header" class="mainHeader">
-		<hr>
-		<div class="center">Caf&eacute;</div>
-	</div>
-	<br>
+        <section id="menu" class="menu-section fade-in">
+            <h2>Today's Highlights</h2>
+            <div class="menu-grid">
+                <!-- All menu images remain clickable and zoomable -->
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/artisanal-pastry-selection-on-display.jpg">
+                        <img src="images/artisanal-pastry-selection-on-display.jpg" alt="Pastry Selection">
+                    </div>
+                    <h3>Pastry Selection</h3>
+                    <p>Discover our range of flaky croissants, tarts, and breads – all baked in-house every morning.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/daily-special-red-velvet-cake-slice.jpg">
+                        <img src="images/daily-special-red-velvet-cake-slice.jpg" alt="Red Velvet Cake Slice">
+                    </div>
+                    <h3>Daily Special</h3>
+                    <p>Don't miss our Red Velvet Cake – moist, rich, and topped with silky cream cheese frosting.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/fresh-strawberry-tart-with-glaze.jpg">
+                        <img src="images/fresh-strawberry-tart-with-glaze.jpg" alt="Fresh Strawberry Tart">
+                    </div>
+                    <h3>Strawberry Tart</h3>
+                    <p>House-made tart filled with fresh strawberries and a glossy glaze, a crowd favorite!</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/seasonal-mixed-berry-tart-on-plate.jpg">
+                        <img src="images/seasonal-mixed-berry-tart-on-plate.jpg" alt="Mixed Berry Tart">
+                    </div>
+                    <h3>Mixed Berry Tart</h3>
+                    <p>Enjoy the flavors of the season with our berry tart, bursting with blueberries, strawberries, and raspberries.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/savory-spinach-feta-filled-croissant.jpg">
+                        <img src="images/savory-spinach-feta-filled-croissant.jpg" alt="Spinach Feta Croissant">
+                    </div>
+                    <h3>Savory Croissant</h3>
+                    <p>Flaky croissant filled with savory spinach and feta – perfect for breakfast or lunch.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/house-baked-cookies-and-artisanal-bread.jpg">
+                        <img src="images/house-baked-cookies-and-artisanal-bread.jpg" alt="Cookies & Bread">
+                    </div>
+                    <h3>Cookies & Bread</h3>
+                    <p>Try our selection of house-baked cookies and artisanal breads, made fresh daily.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/himalayan-specialty-coffee-with-latte-art.jpg">
+                        <img src="images/himalayan-specialty-coffee-with-latte-art.jpg" alt="Specialty Coffee">
+                    </div>
+                    <h3>Specialty Coffee</h3>
+                    <p>Handcrafted espresso, latte, cappuccino, and more – featuring Himalayan beans.</p>
+                </div>
+                <div class="menu-card ripple">
+                    <div class="card-img-container zoomable" data-img="images/refreshing-iced-caramel-macchiato-drink.jpg">
+                        <img src="images/refreshing-iced-caramel-macchiato-drink.jpg" alt="Iced Caramel Macchiato">
+                    </div>
+                    <h3>Iced Caramel Macchiato</h3>
+                    <p>Beat the heat with our refreshing caramel macchiato, served over ice.</p>
+                </div>
+            </div>
+        </section>
 
-	<div id="mainContent">
-		<hr>
-		<div id="mainPictures" class="center">
-			<table>
-				<tr>
-					<td><img src="images/Coffee-and-Pastries.png" height=auto width="490"></td>
-					<td><img src="images/Cake-Vitrine.png" height=auto width="450"></td>
-				</tr>
-			</table>
-			<hr>
-			<p>The Caf&eacute; offers an assortment of delicious and delectable pastries and coffees that will put a smile on your face. From cookies to croissants, tarts and cakes, each treat is specially prepared to excite your tastebuds and brighten your day!</p>
-			<br>
-			<table>
-				<tr>
-					<td bgcolor="aquamarine">
-						<div class="cursiveText">Hari Dai bakes a rich variety of cookies. Try them all!</div>
-						<table>
-							<tr>
-								<td><img src="images/Cookies.png" height=auto width="300"></td>
-							</tr>
-						</table>
-					</td>
-					<td bgcolor="orange">
-						<table>
-							<tr>
-								<td><img src="images/Cup-of-Hot-Chocolate.png" height=auto width="200"></td>
-								<td class="cursiveText">Tea<br>Coffee<br>Latte<br>Hot Chocolate<br>Yes, we have it!</td>
-							</tr>
-						</table>
-					</td>
-					<td bgcolor="aquamarine">
-						<div class="cursiveText">Our tarts are always a customer favorite!<br><br>
-					  </div>
-						<table>
-							<tr>
-								<td><img src="images/Strawberry-Tarts.png" height=auto width="170"></td>
-								<td><img src="images/Strawberry-&-Blueberry-Tarts.png" height=auto width="170"></td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table>
-			<hr>
-		</div>
-	</div>
+        <section id="about" class="about-section fade-in">
+            <h2>About Us</h2>
+            <div class="about-content">
+                <div class="about-img-container zoomable" data-img="images/shrestha-family-owners-bake-and-brew.jpg">
+                    <img src="images/shrestha-family-owners-bake-and-brew.jpg" alt="Shrestha Family Owners" class="about-img">
+                </div>
+                <div class="about-text">
+                    <p>
+                        The Shrestha family has been delighting Kathmandu with fresh bakes and artisan coffee since 2016. At Bake&Brew, tradition meets innovation – every recipe is inspired by family heritage and made with simple, fresh ingredients.
+                    </p>
+                    <p>
+                        Step into Bake&Brew and you'll be welcomed with a friendly smile and the aroma of just-baked pastries. Come for the coffee, stay for the warmth!
+                    </p>
+                </div>
+            </div>
+        </section>
 
-	<div id="aboutUs" class="center">
-		<hr>
-		<div>
-			<h2>About Us</h2>
-		</div>
-			<table>
-				<tr>
-					<td><img src="images/Cafe-Owners.png" height=auto width="400"></td>
-					<td><p>Hari Dai and Family have been adding sweetness to their customers's lives since 2016.They will personally greet you with a welcoming smile when you visit! Hari Dai's recipes have been passed down from his mother and use simple and fresh ingredients to produce delightful flavors.</p></td>
-				</tr>
-			</table>
-			<hr>
-		</div>
+        <section id="contact" class="contact-section fade-in">
+            <h2>Contact Us</h2>
+            <div class="contact-content">
+                <div class="contact-img-container zoomable" data-img="images/bake-and-brew-cafe-storefront-bishalnagar-chandol-kathmandu.jpg">
+                    <img src="images/bake-and-brew-cafe-storefront-bishalnagar-chandol-kathmandu.jpg" alt="Cafe Storefront" class="contact-img">
+                </div>
+                <div>
+                    <p>Bishalnagar, Chandol<br>Kathmandu, Nepal<br>Tel: +977 9851111111</p>
+                    <h3>Hours</h3>
+                    <p>
+                        Weekdays: 6:00am - 6:00pm<br>
+                        Sunday: 7:00am - 7:00pm<br>
+                        Closed on Saturday
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-	<div id="ContactUs" align="center">
-		<hr>
-		<div>
-			<h2>Contact Us</h2>
-		</div>
-		<table>
-			<tr>
-				<td><img src="images/Coffee-Shop.png" height=auto width="120"></td>
-			</tr>
-		</table>
-		<div><p>Suryabinayak Road.<br>Lokanthali, BKT<br>Tel: +977 9851111111</p></div>
-		<div>
-			<h3>Hours</h3>
-		</div>
-		<div>Weekdays: 6:00am - 6:00pm<br>Sunday: 7:00am - 7:00pm<br>Closed on Saturday</div>
-	</div>
+    <button id="backToTop" title="Back to Top">&#8679;</button>
 
-	<div id="Copyright" class="center">
-		<h5><p>&copy; 2020, Amazon Web Services, Inc. or its Affiliates. All rights reserved.</p></h5>
-	</div>
+    <footer class="footer-section fade-in">
+        <p>&copy; 2025 Bake&Brew. All rights reserved.</p>
+    </footer>
+
+    <!-- Modal for zooming images -->
+    <div id="imgModal" class="img-modal">
+        <span class="close-modal" title="Close">&times;</span>
+        <img class="modal-content" id="modalImg">
+        <div id="imgCaption"></div>
+    </div>
+
+    <script src="js/main.js"></script>
 </body>
 </html>
