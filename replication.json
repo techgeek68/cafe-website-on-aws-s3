@@ -1,0 +1,18 @@
+{
+  "Role": "arn:aws:iam::341963613150:role/CafeRole",
+  "Rules": [
+    {
+      "ID": "ReplicateAll",
+      "Priority": 1,
+      "Status": "Enabled",
+      "Filter": {},
+      "Destination": {
+        "Bucket": "arn:aws:s3:::labbucket-backup-666",
+        "StorageClass": "STANDARD"
+      },
+      "DeleteMarkerReplication": {
+        "Status": "Enabled"
+      }
+    }
+  ]
+}
