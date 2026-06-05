@@ -28,7 +28,7 @@ A modern, responsive cafe website for **Bake&Brew** - featuring artisanal pastri
 | Layer | Technology |
 |-------|-----------|
 | Structure | HTML (`index.html`) |
-| Styling | CSS (`css/styles.css`) — 46.5% of codebase |
+| Styling | CSS (`css/styles.css`) - 46.5% of codebase |
 | Interactivity | JavaScript (`js/main.js`) |
 | Cloud Hosting | AWS S3 (static website hosting) |
 | Automation | Shell (`create-bucket.sh`) |
@@ -49,7 +49,7 @@ bake-and-brew-website-on-aws-s3/
 ├── lifecycle.json                            # S3 lifecycle configuration
 ├── replication.json                          # S3 cross-region replication config
 ├── create-bucket.sh                          # Shell script: full AWS S3 setup
-├── aws-s3-static-website-guide_Version2.md  # Step-by-step deployment guide
+├── aws-s3-static-website-guide_Version2.md   # Step by step deployment guide using CLI
 ├── README.md
 └── LICENSE
 ```
@@ -62,6 +62,8 @@ bake-and-brew-website-on-aws-s3/
 
 ```bash
 git clone https://github.com/techgeek68/bake-and-brew-website-on-aws-s3.git
+```
+```bash
 cd bake-and-brew-website-on-aws-s3
 ```
 
@@ -75,7 +77,7 @@ cd bake-and-brew-website-on-aws-s3
 ### 3. Deploy to AWS S3
 
 **Option A: Follow the Guide:**  
-See [`aws-s3-static-website-guide_Version2.md`](aws-s3-static-website-guide_Version2.md) for a complete step-by-step walkthrough.
+See [`aws-s3-static-website-guide_Version2.md`](aws-s3-static-website-guide_Version2.md) for a complete step by step walkthrough.
 
 **Option B: Use the Shell Script:**  
 [`create-bucket.sh`](create-bucket.sh) automates the full S3 setup. Review and update the bucket names inside the script, then run:
@@ -112,8 +114,8 @@ The script handles:
 Bake&Brew is a cozy café located in **Bishalnagar, Chandol, Kathmandu, Nepal**, run by the Shrestha family since 2016. The café serves artisanal pastries, fresh breads, and Himalayan specialty coffee.
 
 **Hours:**
-- Weekdays: 6:00 AM – 6:00 PM
-- Sunday: 7:00 AM – 7:00 PM
+- Weekdays: 6:00 AM - 6:00 PM
+- Sunday: 7:00 AM - 7:00 PM
 - Closed on Saturday
 
 ---
@@ -127,3 +129,5 @@ Contributions, suggestions, and improvements are welcome! Please fork the repo a
 ## License
 
 MIT License: see [LICENSE](LICENSE)
+
+---
