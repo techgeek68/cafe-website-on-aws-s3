@@ -1,6 +1,6 @@
-# Bake&Brew — Cafe Website on AWS S3
+# Bake&Brew - Cafe Website on AWS S3
 
-A modern, responsive cafe website for **Bake&Brew** — featuring artisanal pastries and Himalayan specialty coffee in Kathmandu. Designed for easy customization and fast static hosting on AWS S3, complete with automation scripts for bucket setup, versioning, lifecycle policies, and cross-region replication.
+A modern, responsive cafe website for **Bake&Brew** - featuring artisanal pastries and Himalayan specialty coffee in Kathmandu. Designed for easy customization and fast static hosting on AWS S3, complete with automation scripts for bucket setup, versioning, lifecycle policies, and cross-region replication.
 
 ![HTML](https://img.shields.io/badge/HTML-28.8%25-orange?style=flat-square)
 ![CSS](https://img.shields.io/badge/CSS-46.5%25-blue?style=flat-square)
@@ -74,10 +74,10 @@ cd bake-and-brew-website-on-aws-s3
 
 ### 3. Deploy to AWS S3
 
-**Option A — Follow the Guide:**  
+**Option A: Follow the Guide:**  
 See [`aws-s3-static-website-guide_Version2.md`](aws-s3-static-website-guide_Version2.md) for a complete step-by-step walkthrough.
 
-**Option B — Use the Shell Script:**  
+**Option B: Use the Shell Script:**  
 [`create-bucket.sh`](create-bucket.sh) automates the full S3 setup. Review and update the bucket names inside the script, then run:
 
 ```bash
@@ -126,4 +126,4 @@ Contributions, suggestions, and improvements are welcome! Please fork the repo a
 
 ## License
 
-MIT License — see [LICENSE](LICENSE)
+MIT License: see [LICENSE](LICENSE)
