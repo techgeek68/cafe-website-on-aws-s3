@@ -4,17 +4,24 @@
 
 ## Prerequisites
 
-- **AWS CLI installed**  
-  *You must have the AWS CLI tool installed on your machine to interact with AWS services via the command line.*  
-  [Install AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- **AWS CLI installed**
+  
+  *You must have the AWS CLI tool installed on your machine to interact with AWS services via the command line.*
+  
+  [Documentation Install AWS CLI:](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
-- **AWS CLI configured**  
-  *Configure your AWS credentials so the CLI commands can access your AWS account.*  
+
+- **AWS CLI configured**
+  
+  *Configure your AWS credentials so the CLI commands can access your AWS account.*
+
   Run:
   ```bash
   aws configure
   ```
+
   Enter your AWS Access Key, Secret Key, default region (e.g., `us-east-1`), and output format (`json` is recommended).
+
   
 Verify configuration:
 ```
@@ -33,7 +40,7 @@ Verify configuration:
  cd awsS3staticwebsite
 ```
 ```
- git clone git@github.com:techgeek68/cafe-website-on-aws-s3.git
+ git clone git@github.com:techgeek68/bake-and-brew-website-on-aws-s3.git
 ```
 ---
 
@@ -45,14 +52,16 @@ Syntax:
 ```bash
 aws s3api create-bucket --bucket <your-bucket-name> --region us-east-1
 ```
-> For `us-east-1`, omit `--create-bucket-configuration`.  
-For other regions, add:  
-`--create-bucket-configuration LocationConstraint=<region>`
+
+> For `us-east-1`, omit `--create-bucket-configuration`
+> For other regions, add: `--create-bucket-configuration LocationConstraint=<region>`
+
 
 Example 1: Bucket in us-east-1
 ```
 aws s3api create-bucket --bucket labbucket-666 --region us-east-1
 ```
+
 Example 2: Bucket in us-west-2
 ```
 aws s3api create-bucket --bucket labbucket-777 --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
@@ -77,6 +86,7 @@ aws s3api put-public-access-block \
   --bucket labbucket-666 \
   --public-access-block-configuration BlockPublicAcls=false,IgnorePublicAcls=false,BlockPublicPolicy=false,RestrictPublicBuckets=false
 ```
+
 Example 2:
 ```
 aws s3api put-public-access-block \
@@ -93,6 +103,7 @@ Syntax:
 ```bash
 aws s3 cp ./<dir_name> s3://<your-bucket-name>/ --recursive
 ```
+
 Example:
 ```
  cd awsS3staticwebsite/cafe-website-on-aws-s3
@@ -166,6 +177,7 @@ Syntax:
 ```bash
 aws s3api put-bucket-policy --bucket <your-bucket-name> --policy file://bucket-policy.json
 ```
+
 Example:
 ```
 aws s3api put-bucket-policy --bucket labbucket-666 --policy file://bucket-policy.json
@@ -192,7 +204,8 @@ Example output:
 }
 
 ```
-- Open in a browser to view your site as below instruction example:
+
+- Open in a browser to view your site as shown in the example below:
 ```
   http://<your-bucket-name>.s3-website-<region>.amazonaws.com
 ```
@@ -215,20 +228,23 @@ Example:
 
 ## Step 8: Upload New Version of a File
 
-*Update your website by uploading a new version of a file (for example, after editing `index.html`). S3 will keep old versions automatically if versioning is enabled.*
+*Update your website by uploading a new version of a file (for example, after editing `index.html`). S3 will automatically retain old versions when versioning is enabled.*
+
 Syntax:
 ```bash
 aws s3 cp ./<dir_name/index.html> s3://<your-bucket-name>/index.html
 ```
+
 Example:
 ```
  cd awsS3staticwebsite
 ```
+
 ```
 vi index.html
 ```
 
-         Change or update something in `index.html` page !!
+         Change or update something in the `index.html` page !!
 
 ```
  aws s3 cp ~/awsS3staticwebsite/index.html s3://labbucket-666/index.html
@@ -239,14 +255,17 @@ vi index.html
 ## Step 9: List Object Versions
 
 *See all versions of a file in your bucket, which helps track changes, audit modifications, and recover previous states if needed.*
+
 Syntax:
 ```bash
 aws s3api list-object-versions --bucket <your-bucket-name> --prefix index.html
 ```
+
 Example:
 ```
 aws s3api list-object-versions --bucket labbucket-666 --prefix index.html
 ```
+
 - Shows all versions of `index.html`.
 
 ---
@@ -296,10 +315,12 @@ Syntax:
 ```bash
 aws s3api put-bucket-lifecycle-configuration --bucket <your-bucket-name> --lifecycle-configuration file://lifecycle.json
 ```
+
 Example:
 ```
 aws s3api put-bucket-lifecycle-configuration --bucket labbucket-666 --lifecycle-configuration file://lifecycle.json
 ```
+
 Verify:
 ```
 aws s3api get-bucket-lifecycle-configuration --bucket labbucket-666
@@ -321,20 +342,20 @@ Create:
 ```bash
 aws s3api create-bucket --bucket <your-backup-bucket-name> --region <region_name> --create-bucket-configuration LocationConstraint=us-west-2
 ```
+
 Enable Versioning:
 ```
 aws s3api put-bucket-versioning --bucket <your-backup-bucket-name> --versioning-configuration Status=Enabled
 ```
-Example
 
-Create:
+Example:
 ```
 aws s3api create-bucket --bucket labbucket-backup-666 --region us-west-2 --create-bucket-configuration LocationConstraint=us-west-2
 ```
-Enable versioning:
 ```
 aws s3api put-bucket-versioning --bucket labbucket-backup-666 --versioning-configuration Status=Enabled
 ```
+
 
 ### b. Create IAM Role for Replication
 
@@ -344,7 +365,7 @@ aws s3api put-bucket-versioning --bucket labbucket-backup-666 --versioning-confi
 
 *Configure your source bucket to replicate all objects to the destination bucket using the IAM role. This sets the rules for cross-region backup.*
 
-Create
+Create:
 ```
  vi replication.json         #replace with your Account ID and ARNs
 ```
@@ -397,6 +418,7 @@ Syntax:
 ```bash
  aws s3api put-bucket-replication --bucket <your-bucket-name> --replication-configuration file://replication.json
 ```
+
 Example:
 ```
  aws s3api put-bucket-replication --bucket labbucket-666 --replication-configuration file://replication.json
@@ -427,6 +449,7 @@ Example:
 ```bash
   aws s3 rm s3://<your-bucket-name> --recursive
 ```
+
 Example:
 ```
  aws s3 rm s3://labbucket-666 --recursive
